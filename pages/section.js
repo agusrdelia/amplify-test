@@ -1,4 +1,5 @@
-export default function Section({name, url}) {
+export default function Section({name, url, props}) {
+	console.log(props);
     return (
         <>
             <p>Hola mundo</p>
@@ -10,12 +11,14 @@ export default function Section({name, url}) {
         </>
     )
 }
-export async function getServerSideProps( {query, req} ) {
+export async function getServerSideProps( props ) {
+	const {query, req} = props;
 	const { name } = query;
 	return {
 		props: {
 			name,
-            url: req.url
+            url: req.url,
+			props
 		},
 	}
 }
