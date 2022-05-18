@@ -2,7 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home({headers}) {
+  console.log(headers)
   return (
     <div className={styles.container}>
       <Head>
@@ -66,4 +67,12 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+export async function getServerSideProps( {req} ) {
+	const {headers} = req;
+	return {
+		props: {
+			headers
+		},
+	}
 }
